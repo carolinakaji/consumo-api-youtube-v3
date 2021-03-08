@@ -15,7 +15,7 @@
 
 <body>
 
-  <img class="thumb-hover" src=" https://picsum.photos/id/237/200/300">
+  <!-- <img class="thumb-hover" src=" https://picsum.photos/id/237/200/300"> -->
 
   <nav>
     <div class="nav-wrapper container">
@@ -38,6 +38,13 @@
 
     <div class="row">
       <?php echo $cards ?>
+    </div>
+    <div class="row">
+    <ul>
+      <?php for($i = 0; $i < $qtdPagina; $i++){?>
+       <li><a href="index.php?pagina=<?php echo $i;?>"><?php echo $i+1?></a></li> 
+      <?php } ?>
+      </ul>
     </div>
 
   </div>
