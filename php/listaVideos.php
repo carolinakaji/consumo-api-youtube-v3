@@ -21,9 +21,6 @@ if (isset($_POST['search'])) {
 
 
 
-  for ($cont = 0; $cont < 30; $cont++) {
-    $cards = $apiDataSearch->items[$cont][id][videoId];
-  }
 
   foreach ($apiDataSearch->items as $video) {
 
