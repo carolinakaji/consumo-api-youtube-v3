@@ -25,27 +25,30 @@
   </nav>
   <div class="container main">
     <div class="row">
-      <form action="index.php" method="POST">
-        <div class="input-field col s10 m10 l7">
-          <input id="last_name" type="text" class="validate" name="subject">
-          <label for="last_name">Search for a video</label>
-        </div>
-        <div class="col s2 m2 l5">
-          <button class="btn-floating btn-large waves-effect waves-light" name="search"><i class="material-icons">search</i></button>
-        </div>
-      </form>
+      <div class="col s12 m8 l9">
+        <form action="index.php" method="POST">
+          <div class="input-field col s10 m10 l10">
+            <input id="last_name" type="text" class="validate" name="subject">
+            <label for="last_name">Search for a video</label>
+          </div>
+          <div class="col s2 m2 l2">
+            <button class="btn-floating btn-large waves-effect waves-light" name="search"><i class="material-icons">search</i></button>
+          </div>
+        </form>
+      </div>
+      <div class="col s12 m4 l3">
+        <ul class="pagination"> <?php $link ?>
+          <!-- <?php for ($i = 1; $i <= $qtdPagina; $i++) { ?>
+            <li><a href="index.php?pagina=<?php echo $i; ?>"><?php echo $i ?></a></li>
+          <?php } ?> -->
+        </ul>
+      </div>
     </div>
 
     <div class="row">
       <?php echo $cards ?>
     </div>
-    <div class="row">
-    <ul>
-      <?php for($i = 0; $i < $qtdPagina; $i++){?>
-       <li><a href="index.php?pagina=<?php echo $i;?>"><?php echo $i+1?></a></li> 
-      <?php } ?>
-      </ul>
-    </div>
+
 
   </div>
 
