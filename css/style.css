@@ -2,11 +2,6 @@
   margin-top: 2%;
 }
 
-
-.card-height {
-  min-height: 500px;
-}
-
 .thumb-hover:hover {
   transform: scale(1.005);
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.342);

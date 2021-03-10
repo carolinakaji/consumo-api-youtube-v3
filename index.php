@@ -31,45 +31,46 @@
   <nav>
     <div class="nav-wrapper container">
       <a href="#" class="brand-logo center">YoutubeList</a>
-
     </div>
   </nav>
-  <div class="container main center">
-    <div class="row">
-      <div class="col s12 m8 l9">
-        <form action="index.php" method="POST">
-          <div class="input-field col s10 m7 l7">
-            <input id="last_name" type="text" class="validate" name="subject">
-            <label for="last_name">Search for a video</label>
-          </div>
 
-          <div class="input-field col s8 m4 l4">
-            <select name="numeroVideos">
-              <option value="" disabled selected>Número de vídeos</option>
-              <?php for ($i = 1; $i <= $select; $i++) { ?>
-                <option value="<?php echo $i ?>"><?php $totalPorPag = $conjunto * $i;
-                                                  echo "{$totalPorPag}" ?></option>
-              <?php }
-              ?>
-            </select>
-          </div>
+  <main>
+    <div class="container main center">
+      <div class="row">
+        <div class="col s12">
+          <form action="index.php" method="POST">
+            <div class="input-field col s10 m7 l6">
+              <input id="last_name" type="text" class="validate" name="subject">
+              <label for="last_name">Search for a video</label>
+            </div>
 
-          <div class="col s4 m1 l1">
-            <button class="btn-floating btn-large waves-effect waves-light" name="search"><i class="material-icons">search</i></button>
-          </div>
-        </form>
+            <div class="input-field col s8 m3 l3">
+              <select name="numeroVideos">
+                <option value="" disabled selected>Número de vídeos</option>
+                <?php for ($i = 1; $i <= $select; $i++) { ?>
+                  <option value="<?php echo $i ?>"><?php $totalPorPag = $conjunto * $i;
+                                                    echo "{$totalPorPag}" ?></option>
+                <?php }
+                ?>
+              </select>
+            </div>
+
+            <div class="col s4 m1 l1">
+              <button class="btn-floating btn-large waves-effect waves-light" name="search"><i class="material-icons">search</i></button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <?php echo $cards ?>
-      <div>
-        <h3></h3>
+      <div class="row">
+        <?php echo $cards ?>
+        <div>
+          <h3></h3>
+        </div>
       </div>
+
     </div>
-
-
-  </div>
+  </main>
 
   <footer class="page-footer">
     <div class="footer-copyright">
@@ -80,12 +81,6 @@
       </div>
     </div>
   </footer>
-
-
-
-
-
-
 
 </body>
 

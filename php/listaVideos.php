@@ -1,4 +1,5 @@
 <?php
+
 # key = AIzaSyB4tQnGjkbAvdjWR_Nl7T8hF8MgYcsfpGs
 # key = AIzaSyCdCeOw3VmIIqOfXyyJq8dO_IQRRpX5OpA
 # key = AIzaSyBA5G3cFHIM0CSWYPauuRlBwE3hl1C7nVc
@@ -16,38 +17,34 @@ $select = ceil($totalVideos / $totalPorPag);
 
 function montaCard($cont, $arrId)
 {
-  // echo '<pre>';
-  // var_dump($arrId);
-  // echo '</pre>';
   if (isset($arrId[$cont]->id->videoId))
 
-    return "<div class='col s12 m6 l4'>
-      <div class='card card-height'>
-      <div class='card-image'>
-      <a href='https://www.youtube.com/watch?v={$arrId[$cont]->id->videoId}' target='_blank'><img class='thumb-hover' src='{$arrId[$cont]->snippet->thumbnails->medium->url}'></a>
-      <a class='btn-floating halfway-fab waves-effect waves-light red'  href='https://www.youtube.com/watch?v={$arrId[$cont]->id->videoId}' target='_blank'><i class='material-icons'>play_arrow</i></a>
-      </div>
+    return
+      "<div class='col s12 m6 l4'>
+      <div class='card'>
+        <div class='card-image'>
+          <a href='https://www.youtube.com/watch?v={$arrId[$cont]->id->videoId}' target='_blank'><img class='thumb-hover' src='{$arrId[$cont]->snippet->thumbnails->medium->url}'></a>
+          <a class='btn-floating halfway-fab waves-effect waves-light red' href='https://www.youtube.com/watch?v={$arrId[$cont]->id->videoId}' target='_blank'><i class='material-icons'>play_arrow</i></a>
+        </div>
       <div class='card-content'>
-      <span class='card-title'>{$arrId[$cont]->snippet->title}</span>
-      <ul class='collapsible expandable'>
-        <li>
-          <div class='collapsible-header'><i class='material-icons'>description</i>Descrição</div>
-          <div class='collapsible-body left-align'><span>{$arrId[$cont]->snippet->description}</span></div>
-        </li>
-        <li>
-          <div class='collapsible-header'><i class='material-icons'>live_tv</i>Canal</div>
-          <div class='collapsible-body left-align'><span><a href='https://www.youtube.com/channel/{$arrId[$cont]->snippet->channelId}' target='_blank'>{$arrId[$cont]->snippet->channelTitle}</span></a></div>
-        </li>
-
-        <li>
-          <div class='collapsible-header'><i class='material-icons'>whatshot</i>Data de publicação</div>
-          <div class='collapsible-body'><span>{$arrId[$cont]->snippet->publishedAt}</span></div>
-        </li>
-      </ul>
-      
+        <span class='card-title'>{$arrId[$cont]->snippet->title}</span>
+        <ul class='collapsible expandable'>
+          <li>
+            <div class='collapsible-header'><i class='material-icons'>description</i>Descrição</div>
+            <div class='collapsible-body left-align'><span>{$arrId[$cont]->snippet->description}</span></div>
+          </li>
+          <li>
+            <div class='collapsible-header'><i class='material-icons'>live_tv</i>Canal</div>
+            <div class='collapsible-body left-align'><span><a href='https://www.youtube.com/channel/{$arrId[$cont]->snippet->channelId}' target='_blank'>{$arrId[$cont]->snippet->channelTitle}</span></a></div>
+          </li>
+          <li>
+            <div class='collapsible-header'><i class='material-icons'>date_range</i>Data de publicação</div>
+            <div class='collapsible-body'><span>{$arrId[$cont]->snippet->publishedAt}</span></div>
+          </li>
+        </ul>
+        </div>
       </div>
-      </div>
-      </div>";
+    </div>";
 }
 
 
