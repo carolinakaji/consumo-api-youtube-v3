@@ -43,7 +43,7 @@
             <label for="last_name">Search for a video</label>
           </div>
 
-          <div class="input-field col s8 m3 l3">
+          <div class="input-field col s8 m4 l4">
             <select name="numeroVideos">
               <option value="" disabled selected>Número de vídeos</option>
               <?php for ($i = 1; $i <= $select; $i++) { ?>
@@ -54,7 +54,7 @@
             </select>
           </div>
 
-          <div class="col s4 m2 l2">
+          <div class="col s4 m1 l1">
             <button class="btn-floating btn-large waves-effect waves-light" name="search"><i class="material-icons">search</i></button>
           </div>
         </form>
