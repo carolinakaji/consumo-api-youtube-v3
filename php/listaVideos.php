@@ -15,10 +15,25 @@ $conjunto = 3;
 $totalVideos = 30;
 $select = ceil($totalVideos / $totalPorPag);
 
+// Tela inicial
+$urlSearch = "https://youtube.googleapis.com/youtube/v3/search?fields=items(id(videoId),snippet(title,channelId,description,publishedAt,thumbnails(medium),channelTitle))&part=snippet&chart=mostPopular&maxResults=10&q=developer&key=AIzaSyDecn4DdSue5G31E_uBaItetoZnB6h_syQ";
+// transforma para string
+$jsonSearch = file_get_contents($urlSearch);
+// decodifica uma string JSON em objeto
+$apiDataSearch = json_decode($jsonSearch);
+// extrai array de itens
+$arr = $apiDataSearch->items;
+shuffle($arr);
+
+for ($cont = 0; $cont < 3; $cont++) {
+  $cards .= montaCard($cont, $arr);
+}
+
 function montaCard($cont, $arrId)
 {
-  if (isset($arrId[$cont]->id->videoId))
-
+  if (isset($arrId[$cont]->id->videoId)) {
+    $date = $arrId[$cont]->snippet->publishedAt;
+    $dateFormated = date('d-m-Y', strtotime($date));
     return
       "<div class='col s12 m6 l4'>
       <div class='card'>
@@ -39,20 +54,22 @@ function montaCard($cont, $arrId)
           </li>
           <li>
             <div class='collapsible-header'><i class='material-icons'>date_range</i>Data de publicação</div>
-            <div class='collapsible-body'><span>{$arrId[$cont]->snippet->publishedAt}</span></div>
+            <div class='collapsible-body'><span>{$dateFormated}</span></div>
           </li>
         </ul>
         </div>
       </div>
     </div>";
+  }
 }
 
 
 // Quando clica no botão para procurar busca a api com o assunto desejado
 if (isset($_POST['search'])) {
+  $cards = '';
   $subject = isset($_POST['subject']) ? $_POST['subject'] : '';
   $subject = str_replace(' ', '+', $subject);
-  $urlSearch = "https://youtube.googleapis.com/youtube/v3/search?fields=items(id(videoId),snippet(title,channelId,description,publishedAt,thumbnails(medium),channelTitle))&part=snippet&chart=mostPopular&maxResults={$totalVideos}&q={$subject}&key=AIzaSyB4tQnGjkbAvdjWR_Nl7T8hF8MgYcsfpGs";
+  $urlSearch = "https://youtube.googleapis.com/youtube/v3/search?fields=items(id(videoId),snippet(title,channelId,description,publishedAt,thumbnails(medium),channelTitle))&part=snippet&chart=mostPopular&maxResults={$totalVideos}&q={$subject}&key=AIzaSyDecn4DdSue5G31E_uBaItetoZnB6h_syQ";
   // transforma para string
   $jsonSearch = file_get_contents($urlSearch);
   // decodifica uma string JSON em objeto
@@ -69,7 +86,6 @@ if (isset($_POST['search'])) {
   $totalCards = $totalPorPag * $numeroVideos;
   // Monta os cards
   for ($cont = 0; $cont < $totalCards; $cont++) {
-
     $cards .= montaCard($cont, $arrId);
   }
 }
