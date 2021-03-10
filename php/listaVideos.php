@@ -7,7 +7,7 @@
 
 // Variáveis
 $cards = '';
-$subject = isset($_POST['subject']) ? $_POST['subject'] : '';
+
 $numeroVideos = isset($_POST['numeroVideos']) ? $_POST['numeroVideos'] : '';
 $totalPorPag = 3;
 $conjunto = 3;
@@ -55,6 +55,8 @@ function montaCard($arr, $cont)
 
 // Quando clica no botão para procurar busca a api com o assunto desejado
 if (isset($_POST['search'])) {
+  $subject = isset($_POST['subject']) ? $_POST['subject'] : '';
+  $subject = str_replace(' ', '+', $subject);
 
   $urlSearch = "https://youtube.googleapis.com/youtube/v3/search?fields=items(id(videoId),snippet(title,channelId,description,publishedAt,thumbnails(medium),channelTitle))&part=snippet&maxResults={$totalVideos}&q={$subject}&key=AIzaSyCoOojaBk-u00wfapQi_yDAtQkdJzG5pXo";
   // transforma para string

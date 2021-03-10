@@ -52,7 +52,6 @@
               <?php }
               ?>
             </select>
-            <label>Materialize Select</label>
           </div>
 
           <div class="col s4 m2 l2">
