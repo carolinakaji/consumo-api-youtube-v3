@@ -8,7 +8,6 @@
 
 // Variáveis
 $cards = '';
-
 $numeroVideos = isset($_POST['numeroVideos']) ? $_POST['numeroVideos'] : '';
 $totalPorPag = 3;
 $conjunto = 3;
@@ -27,40 +26,6 @@ shuffle($arr);
 
 for ($cont = 0; $cont < 3; $cont++) {
   $cards .= montaCard($cont, $arr);
-}
-
-function montaCard($cont, $arrId)
-{
-  if (isset($arrId[$cont]->id->videoId)) {
-    $date = $arrId[$cont]->snippet->publishedAt;
-    $dateFormated = date('d-m-Y', strtotime($date));
-    return
-      "<div class='col s12 m6 l4'>
-      <div class='card'>
-        <div class='card-image'>
-          <a href='https://www.youtube.com/watch?v={$arrId[$cont]->id->videoId}' target='_blank'><img class='thumb-hover' src='{$arrId[$cont]->snippet->thumbnails->medium->url}'></a>
-          <a class='btn-floating halfway-fab waves-effect waves-light red' href='https://www.youtube.com/watch?v={$arrId[$cont]->id->videoId}' target='_blank'><i class='material-icons'>play_arrow</i></a>
-        </div>
-      <div class='card-content'>
-        <span class='card-title'>{$arrId[$cont]->snippet->title}</span>
-        <ul class='collapsible expandable'>
-          <li>
-            <div class='collapsible-header'><i class='material-icons'>description</i>Descrição</div>
-            <div class='collapsible-body left-align'><span>{$arrId[$cont]->snippet->description}</span></div>
-          </li>
-          <li>
-            <div class='collapsible-header'><i class='material-icons'>live_tv</i>Canal</div>
-            <div class='collapsible-body left-align'><span><a href='https://www.youtube.com/channel/{$arrId[$cont]->snippet->channelId}' target='_blank'>{$arrId[$cont]->snippet->channelTitle}</span></a></div>
-          </li>
-          <li>
-            <div class='collapsible-header'><i class='material-icons'>date_range</i>Data de publicação</div>
-            <div class='collapsible-body'><span>{$dateFormated}</span></div>
-          </li>
-        </ul>
-        </div>
-      </div>
-    </div>";
-  }
 }
 
 
@@ -87,5 +52,40 @@ if (isset($_POST['search'])) {
   // Monta os cards
   for ($cont = 0; $cont < $totalCards; $cont++) {
     $cards .= montaCard($cont, $arrId);
+  }
+}
+
+// Função para montar o card
+function montaCard($cont, $arrId)
+{
+  if (isset($arrId[$cont]->id->videoId)) {
+    $date = $arrId[$cont]->snippet->publishedAt;
+    $dateFormated = date('d-m-Y', strtotime($date));
+    return
+      "<div class='col s12 m6 l4'>
+      <div class='card'>
+        <div class='card-image'>
+          <a href='https://www.youtube.com/watch?v={$arrId[$cont]->id->videoId}' target='_blank'><img class='thumb-hover' src='{$arrId[$cont]->snippet->thumbnails->medium->url}'></a>
+          <a class='btn-floating halfway-fab waves-effect waves-light red' href='https://www.youtube.com/watch?v={$arrId[$cont]->id->videoId}' target='_blank'><i class='material-icons'>play_arrow</i></a>
+        </div>
+      <div class='card-content'>
+        <span class='card-title'>{$arrId[$cont]->snippet->title}</span>
+        <ul class='collapsible expandable'>
+          <li>
+            <div class='collapsible-header'><i class='material-icons'>description</i>Descrição</div>
+            <div class='collapsible-body left-align'><span>{$arrId[$cont]->snippet->description}</span></div>
+          </li>
+          <li>
+            <div class='collapsible-header'><i class='material-icons'>live_tv</i>Canal</div>
+            <div class='collapsible-body left-align'><span><a href='https://www.youtube.com/channel/{$arrId[$cont]->snippet->channelId}' target='_blank'>{$arrId[$cont]->snippet->channelTitle}</span></a></div>
+          </li>
+          <li>
+            <div class='collapsible-header'><i class='material-icons'>date_range</i>Data de publicação</div>
+            <div class='collapsible-body left-align'><span>{$dateFormated}</span></div>
+          </li>
+        </ul>
+        </div>
+      </div>
+    </div>";
   }
 }
