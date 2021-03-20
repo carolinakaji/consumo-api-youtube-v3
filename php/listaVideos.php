@@ -1,10 +1,6 @@
 <?php
 
-# key = AIzaSyB4tQnGjkbAvdjWR_Nl7T8hF8MgYcsfpGs
-# key = AIzaSyCdCeOw3VmIIqOfXyyJq8dO_IQRRpX5OpA
-# key = AIzaSyBA5G3cFHIM0CSWYPauuRlBwE3hl1C7nVc
-# key = AIzaSyDecn4DdSue5G31E_uBaItetoZnB6h_syQ
-# key = AIzaSyCoOojaBk-u00wfapQi_yDAtQkdJzG5pXo
+
 
 // Variáveis
 $cards = '';
@@ -15,7 +11,7 @@ $totalVideos = 30;
 $select = ceil($totalVideos / $totalPorPag);
 
 // Tela inicial
-$urlSearch = "https://youtube.googleapis.com/youtube/v3/search?fields=items(id(videoId),snippet(title,channelId,description,publishedAt,thumbnails(medium),channelTitle))&part=snippet&chart=mostPopular&maxResults=10&q=developer&key=AIzaSyDecn4DdSue5G31E_uBaItetoZnB6h_syQ";
+$urlSearch = "https://youtube.googleapis.com/youtube/v3/search?fields=items(id(videoId),snippet(title,channelId,description,publishedAt,thumbnails(medium),channelTitle))&part=snippet&chart=mostPopular&maxResults=10&q=developer&key=[key]";
 // transforma para string
 $jsonSearch = file_get_contents($urlSearch);
 // decodifica uma string JSON em objeto
@@ -34,7 +30,7 @@ if (isset($_POST['search'])) {
   $cards = '';
   $subject = isset($_POST['subject']) ? $_POST['subject'] : '';
   $subject = str_replace(' ', '+', $subject);
-  $urlSearch = "https://youtube.googleapis.com/youtube/v3/search?fields=items(id(videoId),snippet(title,channelId,description,publishedAt,thumbnails(medium),channelTitle))&part=snippet&chart=mostPopular&maxResults={$totalVideos}&q={$subject}&key=AIzaSyDecn4DdSue5G31E_uBaItetoZnB6h_syQ";
+  $urlSearch = "https://youtube.googleapis.com/youtube/v3/search?fields=items(id(videoId),snippet(title,channelId,description,publishedAt,thumbnails(medium),channelTitle))&part=snippet&chart=mostPopular&maxResults={$totalVideos}&q={$subject}&key=[key]";
   // transforma para string
   $jsonSearch = file_get_contents($urlSearch);
   // decodifica uma string JSON em objeto
